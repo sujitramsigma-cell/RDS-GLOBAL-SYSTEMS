@@ -1,2 +1,102 @@
-# RDS-GLOBAL-SYSTEMS
-Official Global Terminal of Ram Data Systems (RDS)"
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RDS GLOBAL TERMINAL</title>
+    <style>
+        :root { --primary: #00ccff; --bg: #050a14; --text: #ffffff; }
+        body { font-family: 'Arial', sans-serif; margin: 0; background: var(--bg); color: var(--text); transition: 0.5s; overflow-x: hidden; }
+        
+        /* चलता-फिरता नाम (Floating Logo) */
+        .floating-logo { position: fixed; top: 20px; left: 20px; font-size: 24px; font-weight: bold; color: var(--primary); animation: float 3s ease-in-out infinite; z-index: 100; text-transform: uppercase; }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(10px); } }
+
+        /* बड़ा 3-Dot मेनू */
+        .menu-dots { position: fixed; top: 20px; right: 20px; font-size: 40px; cursor: pointer; z-index: 1000; color: var(--primary); }
+        .side-menu { position: fixed; top: 0; right: -300px; width: 300px; height: 100%; background: #001a33; transition: 0.5s; z-index: 999; padding-top: 80px; box-shadow: -5px 0 15px rgba(0,0,0,0.5); }
+        .side-menu a { display: block; padding: 15px 25px; color: white; text-decoration: none; font-weight: bold; text-transform: uppercase; border-bottom: 1px solid #1e3a5a; }
+
+        /* देश चुनने वाला बार */
+        .country-bar { background: rgba(255,255,255,0.1); padding: 15px; text-align: center; margin-top: 70px; }
+        .btn { padding: 10px 20px; margin: 5px; border: none; cursor: pointer; font-weight: bold; border-radius: 5px; text-transform: uppercase; }
+
+        /* मेन कंटेंट */
+        .content { padding: 50px 20px; text-align: center; }
+        .lock-screen { filter: blur(8px); pointer-events: none; user-select: none; }
+        .payment-box { background: rgba(255,0,0,0.2); border: 2px solid red; padding: 20px; margin-top: 30px; border-radius: 10px; display: none; }
+        
+        /* देश के हिसाब से स्टाइलिंग */
+        .theme-usa { --primary: #ff4b2b; --bg: #001529; }
+        .theme-japan { --primary: #bc002d; --bg: #f0f0f0; color: #333; }
+        .theme-uk { --primary: #cfb53b; --bg: #002147; }
+        .theme-germany { --primary: #ffce00; --bg: #1c1c1c; }
+    </style>
+</head>
+<body id="body" class="theme-usa">
+
+    <div class="floating-logo" id="main-logo">RDS GLOBAL</div>
+
+    <div class="menu-dots" onclick="toggleMenu()">⋮</div>
+    <div class="side-menu" id="sideMenu">
+        <a href="#" id="m-home">HOME</a>
+        <a href="https://sujitsuperguide.blogspot.com/" target="_blank">OFFICIAL BLOGGER</a>
+        <a href="#" id="m-about">ABOUT ME</a>
+        <a href="#" id="m-contact">CONTACT US</a>
+        <a href="#" id="m-privacy">PRIVACY POLICY</a>
+    </div>
+
+    <div class="country-bar">
+        <button class="btn" style="background:#0052ff;color:white" onclick="changeCountry('usa')">USA 🇺🇸</button>
+        <button class="btn" style="background:#bc002d;color:white" onclick="changeCountry('japan')">JAPAN 🇯🇵</button>
+        <button class="btn" style="background:#00247d;color:white" onclick="changeCountry('uk')">UK 🇬🇧</button>
+        <button class="btn" style="background:#333;color:white" onclick="changeCountry('germany')">GERMANY 🇩🇪</button>
+    </div>
+
+    <div class="content" id="main-content">
+        <h1 id="h-title">RDS GLOBAL TERMINAL</h1>
+        <p id="h-desc">GLOBAL DATA PROTECTION & SECURE SYSTEMS</p>
+        
+        <div id="service-grid" style="display:grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top:40px;">
+            <div style="border:1px solid var(--primary); padding:20px;"><h3 id="s1">SERVICE 1</h3></div>
+            <div style="border:1px solid var(--primary); padding:20px;"><h3 id="s2">SERVICE 2</h3></div>
+            <div style="border:1px solid var(--primary); padding:20px;"><h3 id="s3">SERVICE 3</h3></div>
+            <div style="border:1px solid var(--primary); padding:20px;"><h3 id="s4">SERVICE 4</h3></div>
+        </div>
+
+        <div id="payment-section" class="payment-box">
+            <h2 id="p-text">PAYMENT REQUIRED: $9.99</h2>
+            <p id="p-sub">PLEASE TRANSFER TO PROCEED</p>
+            <button class="btn" style="background:green; color:white">PAY NOW</button>
+        </div>
+    </div>
+
+    <script>
+        const data = {
+            usa: { title: "RDS GLOBAL USA", desc: "SECURE DATA SOLUTIONS", s1: "CLOUD TECH", s2: "CYBER SECURITY", s3: "DATA MINING", s4: "AI INTERFACE", pay: "PAYMENT REQUIRED: $9.99", priv: "USA PRIVACY STANDARDS APPLY", blog: "https://sujitsuperguide.blogspot.com/?m=usa" },
+            japan: { title: "RDS グローバル ジャパン", desc: "安全なデータソリューション", s1: "クラウド技術", s2: "サイバーセキュリティ", s3: "データマイニング", s4: "AIインターフェース", pay: "お支払いが必要: ¥1500", priv: "日本国内のプライバシーポリシー適用", blog: "https://sujitsuperguide.blogspot.com/?m=japan" },
+            uk: { title: "RDS GLOBAL UK", desc: "ROYAL DATA TERMINAL", s1: "BRITISH CLOUD", s2: "UK SECURITY", s3: "GLOBAL DATA", s4: "PREMIUM AI", pay: "PAYMENT REQUIRED: £8.50", priv: "UK GDPR POLICY ACTIVE", blog: "https://sujitsuperguide.blogspot.com/?m=uk" },
+            germany: { title: "RDS GLOBAL DEUTSCHLAND", desc: "SICHERE DATENSYSTEME", s1: "CLOUD-SYSTEME", s2: "DATENSCHUTZ", s3: "ANALYTIK", s4: "KI-SYSTEME", pay: "ZAHLUNG ERFORDERLICH: €8.99", priv: "DEUTSCHE DATENSCHUTZRICHTLINIEN", blog: "https://sujitsuperguide.blogspot.com/?m=germany" }
+        };
+
+        function changeCountry(c) {
+            document.body.className = 'theme-' + c;
+            document.getElementById('h-title').innerText = data[c].title;
+            document.getElementById('h-desc').innerText = data[c].desc;
+            document.getElementById('s1').innerText = data[c].s1;
+            document.getElementById('s2').innerText = data[c].s2;
+            document.getElementById('s3').innerText = data[c].s3;
+            document.getElementById('s4').innerText = data[c].s4;
+            document.getElementById('p-text').innerText = data[c].pay;
+            document.getElementById('m-privacy').innerText = data[c].priv;
+            document.getElementById('payment-section').style.display = 'block';
+        }
+
+        function toggleMenu() {
+            var m = document.getElementById('sideMenu');
+            m.style.right = m.style.right === '0px' ? '-300px' : '0px';
+        }
+    </script>
+</body>
+</html>
